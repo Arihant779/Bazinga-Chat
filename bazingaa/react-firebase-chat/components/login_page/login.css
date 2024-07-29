@@ -1,0 +1,365 @@
+#pawss {
+    font-size: 35px;
+    color: aqua;
+    ;
+}
+
+.random {
+    height: 5000px;
+}
+
+#pawss:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+/* Add these styles to your existing style.css */
+
+.d-flex {
+    display: flex;
+}
+
+.form-control {
+    border-radius: 25px 0 0 25px;
+    /* Rounded on left side */
+    border-right: none;
+    /* Remove right border to connect with the button */
+}
+
+.btn-outline-success {
+    border-radius: 0 25px 25px 0;
+    /* Rounded on right side */
+    border-left: none;
+    /* Remove left border to connect with the input */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* home */
+.nav1 {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    border-bottom: 1px solid rgb(134, 130, 130);
+    display: flex;
+    opacity:1;
+    /* background-color: rgb(16, 197, 188); */
+    background-color: rgb(21, 33, 55) !important;
+    z-index: 1000;
+    padding:none;
+    margin:none;
+    top:0px;
+}
+
+.nav2 {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    position: relative;
+}
+
+#pawss1 {
+    font-size: 35px;
+    color: rgb(255, 51, 0);
+
+    top: 5px;
+
+}
+
+#pawss1:hover {
+    background-color: rgb(238, 255, 0);
+}
+
+.search {
+
+    display: flex;
+    margin-left: 25px;
+    justify-content: flex-start;
+    align-items: center;
+    float: left;
+}
+
+.search input[type="text"] {
+    padding: 6px;
+    margin-right: 10px;
+    border: 2px solid black;
+    font-size: 17px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+
+
+.search button {
+    padding: 6px 10px;
+    background: white;
+    color: green;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.search button i {
+    font-size: 18px;
+}
+
+.search button:hover {
+    background: darkgreen;
+    color: white;
+}
+
+.bazingalogo {
+    justify-content: center;
+    position: absolute;
+    left: 45%;
+
+    height: 45px;
+}
+
+.bazingalogo:hover img {
+    height: 100px;
+    
+}
+
+.bazingalogo:hover {
+    height: 100px;
+    left: 40%;
+
+}
+
+.options {
+    position: absolute;
+    right: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.drops {
+    margin-left: 10px;
+
+    padding: 5px;
+    color: rgb(255, 60, 0);
+
+    font-size: 25px;
+}
+
+.bns {
+    /* background-color: rgb(16, 197, 188); */
+    background-color: transparent !important;
+    font-size: 18px;
+    color:white;
+    border: 2px solid white;
+    height: 50px;
+    /* margin-left: 2px; */
+    padding:3px;
+}
+
+.lists {
+    background-color: rgb(16, 197, 188);
+    font-size: 30px;
+    border: 2px solid rgb(16, 197, 188);
+}
+
+.colap2 {
+    display: none;
+    background-color: rgb(16, 197, 188);
+    color: white;
+    border: 2px solid rgb(16, 197, 188);
+}
+#prevent{
+    position:relative;
+    right:0%;
+}
+
+
+
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 156.5px;
+    right:0px;
+    z-index: 1000;
+    margin-top:14px;
+    position:fixed;
+    /* top:50px;
+    left:0px;
+    right:0px; */
+}
+
+#dropdown-content a {
+    
+    left:0px;
+    right:0px;
+    display: block;
+    font-size: 15px;
+    background-color: rgb(240, 144, 144);
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+}
+.main_body{
+    margin-top:50px;
+    /* height:100vh; */
+    width:100%;
+    border:2px solid black;
+    position:relative;
+    background-image: url("../Images/3383078.jpg");
+    background-size: 100% 100% !important;
+}
+.boy_img{
+    position:absolute;
+    right:0px;
+    top:10px;
+}
+.girl_img{
+    position:absolute;
+    left:0px;
+    top:10px;
+}
+.login_left{
+    position: absolute;
+    left: 50%;
+    top:300px;
+    transform: translate(-50%, -50%); 
+    width: 35% !important;
+    border: 2px solid black;
+    /* background-color: rgb(16, 197, 188, 0.5);  */
+    background-color: rgb(0,0,0,0.3) !important;
+    text-align: center; 
+    z-index: 999; 
+    color:red;
+    border-radius: 10px;
+}
+.unames{
+    align-items: center;
+    width:40%;
+    height:30px;
+    border-radius: 5px;
+    border:3px rgb(0, 0, 0) solid;
+    margin-bottom: 20px;
+    margin-top:60px;
+    padding:5px;
+
+}
+.passs{
+    align-items: center;
+    width:40%;
+    height:30px;
+    border-radius: 5px;
+    border:3px rgb(0, 0, 0) solid;
+    margin-bottom: 20px;
+    padding:5px;
+
+
+}
+.submiting{
+    width:40%;
+    border-radius: 25px;
+    background-color: yellow;
+}
+
+.loginp{
+    border:none;
+}
+.loginp3{
+    position: relative;
+    margin-bottom: 20px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginp label{
+    position: absolute;
+    width:40%;
+    padding: 0 5px;
+    background-color: white; /* Ensure label background is solid */
+    font-size: 16px; /* Adjust as needed */
+}
+
+@media (max-width:768px) {
+    .search {
+        display: none;
+    }
+
+    .bazingalogo {
+        justify-content: center;
+        position: absolute;
+        left: 35%;
+        height:40px;
+    }
+
+    .colap {
+        display: none;
+    }
+
+    .colap2 {
+        display: block;
+    }
+
+    .bazingalogo:hover {
+        height: 40px;
+    
+    }
+    .bazingalogo:hover img {
+        height: 40px;
+        
+    }
+
+}
+
+
+.register{
+    font-size:15px;
+    color:white !important;
+    margin-top: 20px;;
+    width:100%;
+}
+
+.registering{
+    width:40%;
+    border-radius: 25px;
+    background-color: rgb(233, 64, 22);
+    margin-bottom:15px;
+}
+
+.loginpage{
+    display:flex;
+    flex-direction: column;
+    height:100vh;
+}

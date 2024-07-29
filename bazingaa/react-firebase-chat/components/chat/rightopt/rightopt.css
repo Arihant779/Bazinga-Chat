@@ -1,0 +1,65 @@
+.mainlay{
+    flex:0.13;
+    display:flex;
+    flex-direction: column;
+    border-left: 2px solid black;
+    gap:50px;
+    align-items: center;
+    justify-content: center;
+    /* background-color:rgba(7, 3, 3, 0.679); */
+    background-color: rgb(55, 127, 127);
+}
+
+.blockusr{
+    width:100%;
+    /* margin-top: 80px; */
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+}
+
+.imgusr{
+    width:100%;
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+}
+
+.fileusr{
+    width:100%;
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+}
+.settings{
+    width:100%;
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+    align-self: flex-end;
+}
+
+.profile{
+    width:100%;
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+    align-self: flex-end;
+}
+.gapss{
+    height:160px;
+}
+
+.linkusr{
+    width:100%;
+    font-size: 25px;
+    background-color: transparent;
+    /* background-color:rgb(134, 179, 224); */
+    border:none;
+    align-self: flex-end;
+}

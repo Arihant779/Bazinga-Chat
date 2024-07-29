@@ -1,0 +1,81 @@
+.profile-main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* justify-content: center; */
+    position: relative;
+    background-image: url("../../../Images/Screenshot\ 2024-07-21\ 201913.png");
+    background-size: 100% 100% !important;
+    align-items: center;
+    gap:20px
+    
+}
+.profilepics{
+    padding-bottom: 25px;
+    padding-top: 25px;
+    
+}
+
+.profilepics i{
+    font-size: 30px;
+}
+.profilepics img{
+    border-radius: 50%;
+    height:225px;
+    width:225px;
+}
+.Username{
+    font-size: 32px;
+    padding-bottom: 25px;
+    
+}
+.Username button{
+    margin-left: 20px;
+}
+.Description {
+    font-size: 25px;
+    align-self: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 6px solid black;
+    align-self: stretch;
+    padding-top: 5px;
+    padding-bottom: 35px;
+    margin: 5px;
+    border-radius: 15px;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Description_title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.Description_user {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.editing {
+    font-size: 25px;
+    background-color: transparent;
+    border: none;
+}
+
+.userinput{
+    height:30px;
+    margin:0px;
+    padding:0px;
+    padding-left: 5px;
+    font-size: 20px;
+}
+.save{
+    height:30px;
+    font-size: 20px;
+}
