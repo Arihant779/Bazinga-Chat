@@ -171,6 +171,7 @@
 .msgfrnd {
     display: flex;
     flex-direction: column;
+    position:relative;
 }
 
 .msgfrnd p {
@@ -195,6 +196,7 @@
 .msgme {
     display: flex;
     flex-direction: column;
+    position:relative;
 }
 
 .msgme p {
@@ -227,4 +229,41 @@
 }
 .textinput:disabled{
     cursor:not-allowed;
+}
+
+.msgfrnd a{
+    display:flex;
+    flex-direction: column;
+    position: absolute;
+    right:0px;
+    bottom:0px;
+    border:3px solid black;
+}
+
+.msgme a button{
+    align-self: flex-end;
+}
+
+.downfile{
+    /* align-self: flex-end !important; */
+}
+
+.msgme a{
+    display:flex;
+    flex-direction: column;
+    position: absolute;
+    right:0px;
+    bottom:0px;
+    /* border:3px solid rgb(0, 0, 0); */
+}
+
+.downimgg{
+    background-color: transparent;
+    font-size: 50px;
+    border:none;
+}
+
+.downbut button{
+    border:none;
+    /* background-color: transparent; */
 }

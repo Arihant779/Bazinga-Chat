@@ -60,6 +60,7 @@ const Messages = () => {
 
             if (img.file) {
                 imgid = await imgupl(img.file);
+                setText("");
             }
 
 
@@ -160,16 +161,26 @@ const Messages = () => {
                     <div className={message.senderid===curruser?.id?"me":"frnd"} key={message.createdAt || index}>
                         <img src="./avatar.png" className="avatarimg" alt="Friend's Avatar" style={{ display: message.senderid === curruser?.id ? "none" : "flex" }}/>
                         <div className={message.senderid===curruser?"msgme":"msgfrnd"}>
-                            {message.img && <img src={message.img} alt="Message Attachment" />}
+                            {message.img && (
+                                <>
+                                    <img src={message.img} alt="Message Attachment" />
+                                    <a  className="downbut" href={message.img} target="_blank" rel="noopener noreferrer" download>
+                                        <button><i class="fa-solid fa-download downimgg"></i></button>
+                                    </a>
+                                </>
+                            )}
                             <p>{message.text}</p>
                         </div>
                     </div>
                 )) : <p></p>}
-                {img.url && <div className="me" >
+                {/* {img.url && <div className="me" >
                     <div className="msgme">
                         <img src={img.url}></img>
+                        <a className="downfile" href={img.url} target="_blank" rel="noopener noreferrer" download>
+                            <button><i class="fa-solid fa-download"></i></button>
+                        </a>
                     </div>
-                </div>}
+                </div>} */}
                 <div ref={messagesEndRef} />
                 {(senderblocked) && <div >You are blocked</div>}
                 {(receiverblocked)&& <div>User is blocked by you</div>}
@@ -198,31 +209,3 @@ const Messages = () => {
 }
 
 export default Messages;
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className="frnd">
-                    <img src="./avatar.png"></img>
-                    <div className="msgfrnd">
-                        <img src="./favicon.png"></img>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic labore modi doloremque eos blanditiis rem aspernatur voluptates sint aliquam, aliquid delectus repellendus quo a dolorum esse exercitationem omnis. Voluptatem, numquam!</p>
-                        <span>5 min ago</span>
-                    </div>
-                </div> */}
-
-{/* <div className="me"> */ }
-{/* <img src="./avatar.png"></img> */ }
-{/* <div className="msgme">
-                        <img src="./favicon.png"></img>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic labore modi doloremque eos blanditiis rem aspernatur voluptates sint aliquam, aliquid delectus repellendus quo a dolorum esse exercitationem omnis. Voluptatem, numquam!</p>
-                        <span>5 min ago</span>
-                    </div> */}
-{/* </div> */ }
