@@ -5,7 +5,8 @@ import { db } from "../../../database/firebase";
 import { onSnapshot, doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { allchats } from "../../../database/currchat";
 import { allUsers } from "../../../database/curruser";
-import { imgupl } from "../../../database/imgupload"
+import { imgupl } from "../../../database/imgupload";
+import { useReactMediaRecorder } from "react-media-recorder";
 
 const Messages = () => {
     const [chat, setChat] = useState(null);
@@ -15,13 +16,17 @@ const Messages = () => {
     const [text, setText] = useState("");
     const [senderblocked, setSenderBlocked] = useState(initialSenderBlocked);
     const messagesEndRef = useRef(null);
+    const [mic, setMic] = useState(false);
+    const [micc, setMicc] = useState(false);
+    const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({ audio: true });
 
-    const [img, setimg] = useState({
+    const [img, setImg] = useState({
         file: null,
         url: "",
-    })
+    });
+
     const toggletab = () => {
-        setEmojitab(prev => !prev); 
+        setEmojitab(prev => !prev);
     };
 
     const emojitotext = e => {
@@ -39,7 +44,6 @@ const Messages = () => {
     useEffect(() => {
         if (chatid) {
             const unSub = onSnapshot(doc(db, "chats", chatid), (val1) => {
-                console.log("Received chat data:", val1.data());
                 setChat(val1.data());
             }, err => {
                 console.error("Error fetching chat data:", err);
@@ -52,17 +56,23 @@ const Messages = () => {
     }, [chatid]);
 
     const send = async () => {
-        console.log("Sending message...");
-         console.log("sending img ",img)
-        if (text === "" && img.file===null) return;
+        if (text === "" && img.file === null && mediaBlobUrl === null) return;
         let imgid = null;
+        let filenam = null;
+        let audioUrl = null;
         try {
-
-            if (img.file) {
+            if (micc && mediaBlobUrl) {
+                const audioBlob = await fetch(mediaBlobUrl).then(r => r.blob());
+                audioUrl = await imgupl(audioBlob);
+                setMicc(false);
+                setText("");
+            } else if (img.file) {
                 imgid = await imgupl(img.file);
+                if (img.name) {
+                    filenam = img.name;
+                }
                 setText("");
             }
-
 
             await updateDoc(doc(db, "chats", chatid), {
                 messages: arrayUnion({
@@ -70,6 +80,8 @@ const Messages = () => {
                     text,
                     createdAt: new Date(),
                     ...(imgid && { img: imgid }),
+                    ...(filenam && { filename: filenam }),
+                    ...(audioUrl && { audio: audioUrl }),
                 })
             });
 
@@ -95,7 +107,6 @@ const Messages = () => {
                 }
             }
 
-            
             const otherUserRef = doc(db, "userchats", user.id);
             const otherUserSnap = await getDoc(otherUserRef);
 
@@ -119,27 +130,46 @@ const Messages = () => {
             }
 
             setText("");
+            setImg({ file: null, url: "" });
 
         } catch (err) {
             console.error("Error sending message:", err);
-        } finally {
-            setimg({
-                file: null,
-                url: ""
-            })
         }
     };
 
-    const handleimg = (e) => {
+    const handleImg = (e) => {
         if (e.target.files[0]) {
-            setimg({
-                file: e.target.files[0],
-                url: URL.createObjectURL(e.target.files[0]),
-            })
+            const file = e.target.files[0];
+            const mimeType = file.type;
+            let fileType;
+
+            if (mimeType.startsWith('image/')) {
+                fileType = null;
+            } else if (mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || mimeType === 'application/pdf' || mimeType.startsWith('audio/')) {
+                fileType = file.name;
+            } else {
+                fileType = file.name;
+            }
+
+            setImg({
+                file: file,
+                url: URL.createObjectURL(file),
+                name: fileType,
+            });
         }
-        console.log("img is",img)
-    }
-     useEffect(() => {
+    };
+
+    const micrecord = () => {
+        if (mic) {
+            stopRecording();
+            setMicc(true);
+        } else {
+            startRecording();
+        }
+        setMic(!mic);
+    };
+
+    useEffect(() => {
         setSenderBlocked(initialSenderBlocked);
     }, [initialSenderBlocked]);
 
@@ -158,32 +188,55 @@ const Messages = () => {
             </div>
             <div className="messagesmid">
                 {(chat?.messages?.length > 0) ? chat.messages.map((message, index) => (
-                    <div className={message.senderid===curruser?.id?"me":"frnd"} key={message.createdAt || index}>
-                        <img src="./avatar.png" className="avatarimg" alt="Friend's Avatar" style={{ display: message.senderid === curruser?.id ? "none" : "flex" }}/>
-                        <div className={message.senderid===curruser?"msgme":"msgfrnd"}>
+                    <div className={message.senderid === curruser?.id ? "me" : "frnd"} key={message.createdAt || index}>
+                        <img src="./avatar.png" className="avatarimg" alt="Friend's Avatar" style={{ display: message.senderid === curruser?.id ? "none" : "flex" }} />
+                        <div className={message.senderid === curruser ? "msgme" : "msgfrnd"}>
                             {message.img && (
                                 <>
-                                    <img src={message.img} alt="Message Attachment" />
-                                    <a  className="downbut" href={message.img} target="_blank" rel="noopener noreferrer" download>
-                                        <button><i class="fa-solid fa-download downimgg"></i></button>
-                                    </a>
+                                    {(message.filename) ? (
+                                        <>
+                                            <div className="display">
+                                                <div className="fileshow">
+                                                    <i className="fa-solid fa-file"></i>
+                                                    {message.filename}
+                                                </div>
+                                                <a className="downbut" href={message.img} target="_blank" rel="noopener noreferrer" download>
+                                                    <div className="downdiv">
+                                                        <button className="downdiv"><i className="fa-solid fa-download downimgg"></i> Download</button>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </>
+                                    )
+                                        :
+                                        <>
+                                            <div className="display">
+                                                <img src={message.img} alt="Message Attachment" />
+                                                <a className="downbut" href={message.img} target="_blank" rel="noopener noreferrer" download>
+                                                    <div className="downdiv">
+                                                        <button className="downdiv"><i className="fa-solid fa-download downimgg"></i> Download</button>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </>
+                                    }
                                 </>
                             )}
-                            <p>{message.text}</p>
+                            {message.audio && (
+                                <div>
+                                    <audio controls>
+                                        <source src={message.audio} type="audio/mpeg" />
+                                        {/* Your browser does not support the audio element. */}
+                                    </audio>
+                                </div>
+                            )}
+                            {message.text === "" ? null : <p>{message.text}</p>}
                         </div>
                     </div>
-                )) : <p></p>}
-                {/* {img.url && <div className="me" >
-                    <div className="msgme">
-                        <img src={img.url}></img>
-                        <a className="downfile" href={img.url} target="_blank" rel="noopener noreferrer" download>
-                            <button><i class="fa-solid fa-download"></i></button>
-                        </a>
-                    </div>
-                </div>} */}
+                )) : <p>No messages yet</p>}
                 <div ref={messagesEndRef} />
-                {(senderblocked) && <div >You are blocked</div>}
-                {(receiverblocked)&& <div>User is blocked by you</div>}
+                {senderblocked && <div>You are blocked</div>}
+                {receiverblocked && <div>User is blocked by you</div>}
             </div>
             <div className="messagesfoot">
                 <div className="footoptions">
@@ -193,9 +246,8 @@ const Messages = () => {
                     <i className="fa-regular fa-face-smile" onClick={toggletab}></i>
                     <label htmlFor="file">
                         <i className="fa-solid fa-link"></i></label>
-                    <input type="file" id="file" style={{ display: "none" }} onChange={handleimg} />
-
-                    <i className="fa-solid fa-microphone"></i>
+                    <input type="file" id="file" style={{ display: "none" }} onChange={handleImg} />
+                    <button className="micbut" onClick={micrecord}><i className="fa-solid fa-microphone"></i></button>
                 </div>
                 <input className="textinput" type="text" value={text} disabled={receiverblocked || senderblocked} placeholder="Type your message" onChange={e => setText(e.target.value)} />
                 <div className="sendbut">
