@@ -91,7 +91,6 @@ const Messages = () => {
             if (currentUserSnap.exists()) {
                 const userChatData = currentUserSnap.data();
                 const chatIndex = userChatData.chats.findIndex(c => c.chatID === chatid);
-
                 if (chatIndex !== -1) {
                     userChatData.chats[chatIndex] = {
                         ...userChatData.chats[chatIndex],
@@ -113,7 +112,6 @@ const Messages = () => {
             if (otherUserSnap.exists()) {
                 const otherUserChatData = otherUserSnap.data();
                 const chatIndex = otherUserChatData.chats.findIndex(c => c.chatID === chatid);
-
                 if (chatIndex !== -1) {
                     otherUserChatData.chats[chatIndex] = {
                         ...otherUserChatData.chats[chatIndex],
@@ -173,6 +171,17 @@ const Messages = () => {
         setSenderBlocked(initialSenderBlocked);
     }, [initialSenderBlocked]);
 
+
+    const cancelImage = () => {
+        setImg({ file: null, url: "" });
+    };
+
+    const cancelAudio=()=>{
+        setMicc(false)
+    }
+
+
+
     return (
         <div className="messages-main">
             <div className="messages-head">
@@ -226,7 +235,6 @@ const Messages = () => {
                                 <div>
                                     <audio controls>
                                         <source src={message.audio} type="audio/mpeg" />
-                                        {/* Your browser does not support the audio element. */}
                                     </audio>
                                 </div>
                             )}
@@ -239,6 +247,20 @@ const Messages = () => {
                 {receiverblocked && <div>User is blocked by you</div>}
             </div>
             <div className="messagesfoot">
+                {img.url && (
+                    <div className="image-preview">
+                        <img src={!img.name?img.url:"../../../Images/png-transparent-computer-icons-data-file-document-file-format-others-thumbnail.png"} alt="Preview"  />
+                        <button onClick={cancelImage}><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                )}
+
+                
+                {micc && mediaBlobUrl && (
+                    <div className="media-preview">
+                        <audio controls src={mediaBlobUrl} className="audio-preview" />
+                        <button onClick={cancelAudio}><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                )}
                 <div className="footoptions">
                     <div className='emojistext'>
                         <EmojiPicker open={emojitab} onEmojiClick={emojitotext} />
@@ -256,6 +278,8 @@ const Messages = () => {
                     </button>
                 </div>
             </div>
+            {/* Image Preview Section */}
+            
         </div>
     );
 }

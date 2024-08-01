@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100vh;
     position: relative;
-    
+
 }
 
 .messages-head {
@@ -17,7 +17,7 @@
     /* background-color:rgba(7, 3, 3, 0.679); */
     /* background-color: rgb(46, 139, 87,0.6); */
     background-color: rgb(55, 127, 127);
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     border-bottom: 2px solid rgb(178, 173, 173);
     /* height: 50px; */
 }
@@ -28,13 +28,13 @@
     object-fit: cover;
     border-radius: 50px;
     margin-right: 30px;
-    border:2px solid white;
+    border: 2px solid white;
 }
 
 .userinfo span {
     font-weight: 500;
     font-size: 20px;
-    color:white;
+    color: white;
 }
 
 .userinfo p {
@@ -66,6 +66,7 @@
     /* background-color:rgba(7, 3, 3, 0.679); */
     /* background-color: rgb(46, 139, 87,0.6); */
     background-color: rgb(55, 127, 127);
+    position: relative;
 
 }
 
@@ -87,7 +88,7 @@
     border-radius: 30px;
     border: 2px solid rgb(32, 25, 25);
     font-size: 20px;
-    color:white;
+    color: white;
 }
 
 .sendbut {
@@ -171,7 +172,7 @@
 .msgfrnd {
     display: flex;
     flex-direction: column;
-    position:relative;
+    position: relative;
 }
 
 .msgfrnd p {
@@ -196,7 +197,7 @@
 .msgme {
     display: flex;
     flex-direction: column;
-    position:relative;
+    position: relative;
 }
 
 .msgme p {
@@ -223,12 +224,13 @@
     align-self: flex-end;
 }
 
-.send button:disabled{
+.send button:disabled {
     background-color: black;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
-.textinput:disabled{
-    cursor:not-allowed;
+
+.textinput:disabled {
+    cursor: not-allowed;
 }
 
 /* .msgfrnd a{
@@ -240,7 +242,7 @@
     border:3px solid black;
 } */
 
-.msgme a button{
+.msgme a button {
     align-self: flex-end;
 }
 
@@ -255,66 +257,130 @@
     right:0px;
     bottom:0px;
     /* border:3px solid rgb(0, 0, 0); */
- */
-
-.downimgg{
+*/ .downimgg {
     background-color: transparent;
     font-size: 35px;
-    border:none;
+    border: none;
 }
 
-.downbut button{
-    border:none;
+.downbut button {
+    border: none;
     /* background-color: transparent; */
 }
 
-.fileshow{
+.fileshow {
     font-size: 25px;
     background-color: rgb(220, 216, 216);
-    padding:20px;
+    padding: 20px;
     border-radius: 5px;
 }
-.fileshow i{
+
+.fileshow i {
     margin-right: 20px;
 }
 
-.display{
-    display:flex;
+.display {
+    display: flex;
     flex-direction: column;
     /* gap:0px; */
 }
 
-.display a{
+.display a {
     text-decoration: none;
 }
 
-.downdiv{
-    width:100%;
-    display:flex;
+.downdiv {
+    width: 100%;
+    display: flex;
     flex-direction: row;
     /* justify-content: space-between; */
     background-color: rgb(83, 151, 149);
     font-size: 16px;
-    padding:2px;
-    border:1px solid black;
+    padding: 2px;
+    border: 1px solid black;
     border-radius: 10px;
     color: rgb(211, 200, 200);
     align-items: center;
 
 }
-.downbut{
-    width:100%;
+
+.downbut {
+    width: 100%;
 }
-.downdiv i{
+
+.downdiv i {
     align-self: flex-start;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 
-.micbut{
+.micbut {
     background-color: transparent;
-    border:none;
+    border: none;
     font-size: 30px;
 }
 
 
+.image-preview {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(33, 73, 73)
+}
+
+
+
+.media-preview {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* Stack images and audio vertically */
+    background-color: rgb(33, 73, 73);
+    padding: 10px;
+}
+
+
+.audio-preview {
+    width: 50%;
+    margin: 20px;
+}
+
+.image-preview button {
+    height: 30px;
+    width:30px;
+    font-size: 30px;
+    background-color:transparent;
+    color:red;
+    align-self: flex-start;
+    justify-content: flex-start;
+
+    margin-top: 0;
+    margin-bottom: auto; 
+    align-self: flex-end;
+    border:none;
+
+}
+
+.image-preview img {
+    width: 50%;
+    /* border: 10px solid black; */
+    margin: 5px;
+    align-items:center;
+}
+
+.media-preview button{
+    height: 30px;
+    width:30px;
+    font-size: 30px;
+    background-color:transparent;
+    color:red;
+    border:none;
+    
+}

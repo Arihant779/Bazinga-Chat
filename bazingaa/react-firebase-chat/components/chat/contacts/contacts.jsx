@@ -4,12 +4,14 @@ import { allUsers } from '../../../database/curruser';
 import { db } from "../../../database/firebase";
 import { collection, query, where, setDoc, getDocs, doc, serverTimestamp, updateDoc, arrayUnion } from "firebase/firestore";
 import { useState } from "react";
+import { allchats } from "../../../database/currchat";
 
 const Contacts = () => {
     const { curruser } = allUsers();
     const [user, setUser] = useState(null);
     const [find,setfind]=useState(true);
     const [searchValue, setSearchValue] = useState("");
+    const { chatinfo } = allchats();
 
 
     const newsearch = async (e) => {

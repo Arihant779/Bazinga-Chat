@@ -1,0 +1,76 @@
+.filepg-main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    flex:3;
+    position: relative;
+    background-image: url("../../../Images/Screenshot\ 2024-07-21\ 201913.png");
+    background-size: cover;
+    align-items: center;
+    gap: 20px;
+    overflow-y: auto; 
+}
+
+.filepgtitle {
+    font-size: 60px;
+    margin: 20px 0;
+}
+
+.pgimg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.alllimg {
+    flex: 0 1 calc(33.333% - 10px);
+    box-sizing: border-box;
+    max-width: calc(33.333% - 10px); 
+}
+
+.alllimg img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.display {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fileshow {
+    font-size: 25px;
+    background-color: rgb(220, 216, 216);
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.fileshow i {
+    margin-right: 20px;
+}
+
+.downbut {
+    width: 100%;
+    text-decoration: none;
+}
+
+.downdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(83, 151, 149);
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: rgb(211, 200, 200);
+}
+
+.downimgg {
+    margin-right: 10px;
+}
